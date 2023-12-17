@@ -9,6 +9,7 @@ void deleteArray(int **arr, int size);
 void initializeNegatedColumns(int **arr, int size, int num_of_columns, int num_of_arguments, int num_of_negated_arguments);
 void initializeConditionalColumns(int **arr, int size, int num_of_relationships);
 bool conditionalOutput(int p, int q);
+bool checkSatisfiable(int **arr, int size, int num_of_columns);
 
 int main() {
     int num_of_arguments;
@@ -38,6 +39,16 @@ int main() {
 
     // print the array
     printArray(arr, size, num_of_columns);
+
+    // check if the formula is satisfiable
+    if (checkSatisfiable(arr, size, num_of_columns) == true)
+    {
+        cout << "The formula is satisfiable\n";
+    }
+    else
+    {
+        cout << "The formula is not satisfiable\n";
+    }
     
 
     // Delete the array
@@ -130,4 +141,16 @@ void initializeConditionalColumns(int **arr, int size, int num_of_relationships)
 bool conditionalOutput(int p, int q){
     if (p == 1 && q == 0) { return false; }
     return true;
+}
+
+bool checkSatisfiable(int **arr, int size, int num_of_columns) {
+    for (int i = 0; i < size; i++) {
+     
+        if (arr[i][5] == 1 && arr[i][6] == 1 && arr[i][7] == 1)
+        {
+            return true;
+        }
+     
+    }
+    return false;
 }
