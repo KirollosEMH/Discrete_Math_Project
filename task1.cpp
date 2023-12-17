@@ -10,6 +10,7 @@ void initializeNegatedColumns(int **arr, int size, int num_of_columns, int num_o
 void initializeConditionalColumns(int **arr, int size, int num_of_relationships);
 bool conditionalOutput(int p, int q);
 bool checkSatisfiable(int **arr, int size, int num_of_columns);
+int checkValidity(int **arr, int size, int num_of_columns);
 
 int main() {
     int num_of_arguments;
@@ -38,7 +39,10 @@ int main() {
     initializeConditionalColumns(arr, size, num_of_relationships);
 
     // print the array
+    cout << "========================================\n";
+    cout << "The truth table is: \n";
     printArray(arr, size, num_of_columns);
+    cout << "========================================\n";
 
     // check if the formula is satisfiable
     if (checkSatisfiable(arr, size, num_of_columns) == true)
@@ -48,6 +52,20 @@ int main() {
     else
     {
         cout << "The formula is not satisfiable\n";
+    }
+
+    // check if the formula is valid
+    if (checkValidity(arr, size, num_of_columns) == 0)
+    {
+        cout << "The formula is not valid\n";
+    }
+    else if (checkValidity(arr, size, num_of_columns) == 1)
+    {
+        cout << "The formula is valid\n";
+    }
+    else if (checkValidity(arr, size, num_of_columns) == 2)
+    {
+        cout << "The formula cannot be determined\n";
     }
     
 
@@ -153,4 +171,26 @@ bool checkSatisfiable(int **arr, int size, int num_of_columns) {
      
     }
     return false;
+}
+
+int checkValidity(int **arr, int size, int num_of_columns) {
+    int counter = 0;
+    for (int i = 0; i < size; i++) {
+     
+        if (arr[i][5] == 1 && arr[i][6] == 1 && arr[i][7] == 0)
+        {
+            return 0;
+        }
+        if (arr[i][5] != 1 && arr[i][6] != 1)
+        {
+            counter++;
+        }
+        
+    }
+    if (counter == size -1)
+    {
+        return 2; // cannot be determined
+    }
+    
+    return 1;
 }
