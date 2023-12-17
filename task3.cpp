@@ -16,6 +16,7 @@ string affineCipher(const string& text)
 
     for (char c : text)
     {
+        c = toupper(c);
         if (c == ' ')
         {
             cipheredText += ' ';
