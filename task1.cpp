@@ -7,6 +7,8 @@ void creating2DArray(int **arr, int size, int num_of_columns);
 void printArray(int **arr, int size, int num_of_columns);
 void deleteArray(int **arr, int size);
 void initializeNegatedColumns(int **arr, int size, int num_of_columns, int num_of_arguments, int num_of_negated_arguments);
+void initializeConditionalColumns(int **arr, int size, int num_of_relationships);
+bool conditionalOutput(int p, int q);
 
 int main() {
     int num_of_arguments;
@@ -32,6 +34,7 @@ int main() {
     // initialize the array as a truth table
     initializeArray(arr, size, num_of_columns, num_of_arguments);
     initializeNegatedColumns(arr, size, num_of_columns, num_of_arguments, num_of_negated_arguments);
+    initializeConditionalColumns(arr, size, num_of_relationships);
 
     // print the array
     printArray(arr, size, num_of_columns);
@@ -100,5 +103,31 @@ void initializeNegatedColumns(int **arr, int size, int num_of_columns, int num_o
         
     }
     
+}
+
+void initializeConditionalColumns(int **arr, int size, int num_of_relationships) {
+    if (num_of_relationships == 0)
+    {
+        return;
+    }
+
+    for (int i = 0; i < size; i++)
+    {
+        if (conditionalOutput(arr[i][0], arr[i][1]) == false) { arr[i][5] = 0; }
+        else if (conditionalOutput(arr[i][0], arr[i][1]) == true) { arr[i][5] = 1; }
+
+        if (conditionalOutput(arr[i][4], arr[i][3]) == false) { arr[i][6] = 0; }
+        else if (conditionalOutput(arr[i][4], arr[i][3]) == true) { arr[i][6] = 1; }
+
+        if (conditionalOutput(arr[i][0], arr[i][2]) == false) { arr[i][7] = 0; }
+        else if (conditionalOutput(arr[i][0], arr[i][2]) == true) { arr[i][7] = 1; }
+
+
+    }
     
+}
+
+bool conditionalOutput(int p, int q){
+    if (p == 1 && q == 0) { return false; }
+    return true;
 }
