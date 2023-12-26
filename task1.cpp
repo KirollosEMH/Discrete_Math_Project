@@ -14,17 +14,22 @@ int checkValidity(int **arr, int size, int num_of_columns);
 
 int main() {
     int num_of_arguments;
-    cout << "Enter the number of arguments: \n";
-    cin >> num_of_arguments;
+    cout << "Statement:\n";
+    cout << "If you are a fire-eater, then you work in the circus. If you don't like cotton candy, then you don't work in the circus. Therefore, if you are a fire-eater, then you like cotton candy.\n";
+    cout << "Hypothesis:\n\t1. If you are a fire-eater, then you work in the circus. (p -> q)\n";
+    cout << "\t2. If you don't like cotton candy, then you don't work in the circus. (~r -> q)\n";
+    cout << "Conclusion:\n\t Therefore, if you are a fire-eater, then you like cotton candy. (p -> r)\n";
+    cout << "Enter the number of arguments (p,q,r): \n";
+    cin >> num_of_arguments; // User should Enter 3
     int size = pow(2, num_of_arguments);
 
-    cout << "Enter number of Negated arguments you need: \n";
+    cout << "Enter number of Negated arguments you need (~q , ~r): \n";
     int num_of_negated_arguments;
-    cin >> num_of_negated_arguments;
+    cin >> num_of_negated_arguments; // User should Enter 2
 
-    cout << "Enter Number of conditional (if, then) relationships: \n";
+    cout << "Enter Number of conditional (if, then) relationships (p ->q, ~r -> ~q, p -> r): \n";
     int num_of_relationships;
-    cin >> num_of_relationships;
+    cin >> num_of_relationships; // User should Enter 3
 
     int num_of_columns = num_of_arguments + num_of_negated_arguments + num_of_relationships;
 
