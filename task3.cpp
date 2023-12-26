@@ -3,10 +3,18 @@
 
 using namespace std;
 
+
+// Scottish Gaelic: " A, B, C, D, E, F, G, H, I, L, M, N, O, P, R, S, T, U "
+
+// Affine Cipher
 string affineCipher(const string& text)
 {
     string cipheredText = "";
+
+    // Ciphering Coefficients
     int a = 8, b = 4;
+
+    // Alphabet
     const char Alphabet[77][2]
     {
         // Alphabet: A, B, C, D, E, F, G, H, I, L, M, N, O, P, R, S, T, U
@@ -19,14 +27,20 @@ string affineCipher(const string& text)
         {']',67}, {'{',68}, {'}',69}, {'|',70}, {'^',71}, {'~',72}, {'`',73}, {';',74}, {':',75}, {'"',76}
     };
 
+
+    // Looping through the text
     for (char c : text)
     {
-   
+
+        // Looping through the alphabet
         for (int i = 0; i < 77; i++)
         {
+            // Checking if the current letter is in the alphabet
             if (c == Alphabet[i][0])
             {
+                // Ciphering formula: E(x) = (ax + b) mod 77
                 int x = (a * Alphabet[i][1] + b) % 77;
+                // Adding ciphered letter to the ciphered text
                 cipheredText += Alphabet[x][0];
             }
         } 
