@@ -19,15 +19,15 @@ int main() {
     cout << "Hypothesis:\n\t1. If you are a fire-eater, then you work in the circus. (p -> q)\n";
     cout << "\t2. If you don't like cotton candy, then you don't work in the circus. (~r -> q)\n";
     cout << "Conclusion:\n\t Therefore, if you are a fire-eater, then you like cotton candy. (p -> r)\n";
-    cout << "Enter the number of arguments (p,q,r): \n";
+    cout << "Enter the number of arguments (p,q,r) (Hint: Enter 3): \n";
     cin >> num_of_arguments; // User should Enter 3
     int size = pow(2, num_of_arguments);
 
-    cout << "Enter number of Negated arguments you need (~q , ~r): \n";
+    cout << "Enter number of Negated arguments you need (~q , ~r) (Hint: Enter 2): \n";
     int num_of_negated_arguments;
     cin >> num_of_negated_arguments; // User should Enter 2
 
-    cout << "Enter Number of conditional (if, then) relationships (p ->q, ~r -> ~q, p -> r): \n";
+    cout << "Enter Number of conditional (if, then) relationships (p ->q, ~r -> ~q, p -> r) (Hint: Enter 3): \n";
     int num_of_relationships;
     cin >> num_of_relationships; // User should Enter 3
 
@@ -81,12 +81,14 @@ int main() {
     return 0;
 }
 
+// function that creates 2D array
 void creating2DArray(int **arr, int size, int num_of_columns) {
     for (int i = 0; i < size; i++) {
         arr[i] = new int[num_of_columns]; // number of columns
     }
 }
 
+// function that intializes array as a truth table
 void initializeArray(int **arr, int size, int num_of_columns, int num_of_arguments) {
     for (int i = 0; i < size; i++) {
         int value = i;
@@ -104,6 +106,7 @@ void initializeArray(int **arr, int size, int num_of_columns, int num_of_argumen
     }
 }
 
+// function that prints the array
 void printArray(int **arr, int size, int num_of_columns) {
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < num_of_columns; j++) {
@@ -113,12 +116,15 @@ void printArray(int **arr, int size, int num_of_columns) {
     }
 }
 
+// function that deletes the array
 void deleteArray(int **arr, int size) {
     for (int i = 0; i < size; i++) {
         delete [] arr[i];
     }
     delete [] arr;
 }
+
+// function that initializes the negated columns
 void initializeNegatedColumns(int **arr, int size, int num_of_columns, int num_of_arguments, int num_of_negated_arguments) {
     if (num_of_negated_arguments == 0)
     {
@@ -139,6 +145,7 @@ void initializeNegatedColumns(int **arr, int size, int num_of_columns, int num_o
     
 }
 
+// function that initializes the conditional columns
 void initializeConditionalColumns(int **arr, int size, int num_of_relationships) {
     if (num_of_relationships == 0)
     {
@@ -161,11 +168,13 @@ void initializeConditionalColumns(int **arr, int size, int num_of_relationships)
     
 }
 
+// function that returns the output of the conditional statement (if-then statement )
 bool conditionalOutput(int p, int q){
     if (p == 1 && q == 0) { return false; }
     return true;
 }
 
+// function that checks if the formula is satisfiable by checking if there is a row that has at least all 1's in the last 3 columns
 bool checkSatisfiable(int **arr, int size, int num_of_columns) {
     for (int i = 0; i < size; i++) {
      
@@ -178,6 +187,7 @@ bool checkSatisfiable(int **arr, int size, int num_of_columns) {
     return false;
 }
 
+// function that checks if the formula is valid by checking critical rows (both hypothesis is true thus conditional must be true) in the last 3 columns
 int checkValidity(int **arr, int size, int num_of_columns) {
     int counter = 0;
     for (int i = 0; i < size; i++) {
