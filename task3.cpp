@@ -54,6 +54,14 @@ int main()
     string origText;
     string cipheredText;
 
+    // Scottish Gaelic: "THA GAOL AGAM AIR MATAMATAIG"
+    // Given text
+    string givenText = "THA GAOL AGAM AIR MATAMATAIG";
+    cout << "Given text: " << givenText << endl << endl;
+    cout << "Ciphered text: " << affineCipher(givenText) << endl << endl;
+
+
+    // User input
     cout << "Enter text to cipher: ";
     getline(cin, origText);
 
