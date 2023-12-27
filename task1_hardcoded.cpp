@@ -13,23 +13,17 @@ bool checkSatisfiable(int **arr, int size, int num_of_columns);
 int checkValidity(int **arr, int size, int num_of_columns);
 
 int main() {
-    int num_of_arguments;
+    int num_of_arguments = 3;
     cout << "Statement:\n";
     cout << "If you are a fire-eater, then you work in the circus. If you don't like cotton candy, then you don't work in the circus. Therefore, if you are a fire-eater, then you like cotton candy.\n";
     cout << "Hypothesis:\n\t1. If you are a fire-eater, then you work in the circus. (p -> q)\n";
     cout << "\t2. If you don't like cotton candy, then you don't work in the circus. (~r -> q)\n";
     cout << "Conclusion:\n\t Therefore, if you are a fire-eater, then you like cotton candy. (p -> r)\n";
-    cout << "Enter the number of arguments (p,q,r) (Hint: Enter 3):  ";
-    cin >> num_of_arguments; // User should Enter 3
     int size = pow(2, num_of_arguments);
 
-    cout << "Enter number of Negated arguments you need (~q , ~r) (Hint: Enter 2):  ";
-    int num_of_negated_arguments;
-    cin >> num_of_negated_arguments; // User should Enter 2
+    int num_of_negated_arguments = 2;
 
-    cout << "Enter Number of conditional (if, then) relationships (p ->q, ~r -> ~q, p -> r) (Hint: Enter 3): ";
-    int num_of_relationships;
-    cin >> num_of_relationships; // User should Enter 3
+    int num_of_relationships = 3;
 
     int num_of_columns = num_of_arguments + num_of_negated_arguments + num_of_relationships;
 
@@ -46,8 +40,6 @@ int main() {
     // print the array
     cout << "========================================\n";
     cout << "The truth table is: \n";
-    cout <<"p          q          r         ~q         ~r         p->q     ~r->~q       p->r\n";
-    cout << "--------------------------------------------------------------------------------\n";
     printArray(arr, size, num_of_columns);
     cout << "========================================\n";
 
@@ -112,7 +104,7 @@ void initializeArray(int **arr, int size, int num_of_columns, int num_of_argumen
 void printArray(int **arr, int size, int num_of_columns) {
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < num_of_columns; j++) {
-            cout << arr[i][j] << "          ";
+            cout << arr[i][j] << " ";
         }
         cout << endl;
     }
