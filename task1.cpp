@@ -19,15 +19,15 @@ int main() {
     cout << "Hypothesis:\n\t1. If you are a fire-eater, then you work in the circus. (p -> q)\n";
     cout << "\t2. If you don't like cotton candy, then you don't work in the circus. (~r -> q)\n";
     cout << "Conclusion:\n\t Therefore, if you are a fire-eater, then you like cotton candy. (p -> r)\n";
-    cout << "Enter the number of arguments (p,q,r) (Hint: Enter 3): \n";
+    cout << "Enter the number of arguments (p,q,r) (Hint: Enter 3):  ";
     cin >> num_of_arguments; // User should Enter 3
     int size = pow(2, num_of_arguments);
 
-    cout << "Enter number of Negated arguments you need (~q , ~r) (Hint: Enter 2): \n";
+    cout << "Enter number of Negated arguments you need (~q , ~r) (Hint: Enter 2):  ";
     int num_of_negated_arguments;
     cin >> num_of_negated_arguments; // User should Enter 2
 
-    cout << "Enter Number of conditional (if, then) relationships (p ->q, ~r -> ~q, p -> r) (Hint: Enter 3): \n";
+    cout << "Enter Number of conditional (if, then) relationships (p ->q, ~r -> ~q, p -> r) (Hint: Enter 3): ";
     int num_of_relationships;
     cin >> num_of_relationships; // User should Enter 3
 
