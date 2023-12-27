@@ -5,14 +5,15 @@ using namespace std;
 
 
 // Scottish Gaelic: " A, B, C, D, E, F, G, H, I, L, M, N, O, P, R, S, T, U "
+// Ciphering Coefficients
+const int a = 8;
+const int b = 4;
 
 // Affine Cipher
 string affineCipher(string text)
 {
     string cipheredText = "";
 
-    // Ciphering Coefficients
-    int a = 8, b = 4;
 
     // Alphabet
     const char Alphabet[19][2]
@@ -46,8 +47,6 @@ string affineCipherExtended(string text)
 {
     string cipheredText = "";
 
-    // Ciphering Coefficients
-    int a = 8, b = 4;
 
     // Alphabet
     const char Alphabet[77][2]
@@ -88,8 +87,6 @@ string affineCipherExtended(string text)
 string affineDecipher(string text) {
     string decipheredText = "";
 
-    // Deciphering Coefficients
-    int a = 8, b = 4;
     int a_inv = 0;
 
     for (int i = 0; i < 19; i++) {
@@ -128,8 +125,6 @@ string affineDecipherExtended(string text)
 {
     string decipheredText = "";
 
-    // Deciphering Coefficients
-    int a = 8, b = 4;
     int a_inv = 0;
 
     for (int i = 0; i < 77; i++)
