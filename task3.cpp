@@ -7,7 +7,7 @@ using namespace std;
 // Scottish Gaelic: " A, B, C, D, E, F, G, H, I, L, M, N, O, P, R, S, T, U "
 
 // Affine Cipher
-string affineCipher(const string& text)
+string affineCipher(string text)
 {
     string cipheredText = "";
 
@@ -42,7 +42,7 @@ string affineCipher(const string& text)
 }
 
 // Affine Cipher Extended
-string affineCipherExtended(const string& text)
+string affineCipherExtended(string text)
 {
     string cipheredText = "";
 
@@ -93,16 +93,16 @@ int main()
     // Given text
     cout << "====================== Given Sentence ======================" << endl;
     string givenText = "THA GAOL AGAM AIR MATAMATAIG";
-    cout << "Given text: " << givenText << endl;
-    cout << "Ciphered text: " << affineCipher(givenText) << endl;
-    cout << "Ciphered text Extended: " << affineCipherExtended(givenText) << endl << endl;
+    cout << "Given text:             " << givenText << endl;
+    cout << "Ciphered text:          " << affineCipher(givenText) << endl;
+    cout << "Ciphered text Extended: " << affineCipherExtended(givenText) << endl;
 
 
     // User input
     cout << "====================== User Input ======================" << endl;
     cout << "Enter text to cipher: ";
     getline(cin, origText);
-    cout << "Ciphered text: " << affineCipher(origText) << endl;
+    cout << "Ciphered text:          " << affineCipher(origText) << endl;
     cout << "Ciphered text Extended: " << affineCipherExtended(origText) << endl << endl;
 
 
