@@ -1,50 +1,88 @@
-#include <iostream> 
-#include <string> // For using the string type
+#include <iostream>
+#include <string>
 
-using namespace std; 
+using namespace std;
 
-// Deciphering a text using the Affine cipher
-int main() { 
-    int alphabet[27] = {' ', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
-                        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'}; 
+// Function to calculate the modular inverse of 'alpha' modulo 'mod'
+int calculateModularInverse(int alpha, int mod) {
+    alpha = alpha % mod;
+
+    for (int x = 1; x < mod; x++)
+        if ((alpha * x) % mod == 1)
+            return x;
+
+    return -1; // Inverse doesn't exist
+}
+
+int main() {
+    int alphabet[27] = { ' ', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+                        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+    int alphabets[27] = { ' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+                        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
     int a = 0, b = 0;
 
-    // The keys of the cipher are the integers a and b, where a is chosen to be relatively prime to 27
-    cout << "Type your Deciphering keys: (a =? & b =?)    "; 
+    cout << "Type your Deciphering keys: (a =? & b =?)    ";
+    cin >> a >> b;
 
-    cin >> a >> b; // Read the keys
+    // Check if 'a' is relatively prime to 27, if not, request new keys
+    while (calculateModularInverse(a, 27) == -1) {
+        cout << "Error: 'a' must be relatively prime to 27. Enter new keys: ";
+        cin >> a >> b;
+    }
 
-    // Find the multiplicative inverse of 'a' in the group of integers modulo 27
-    int a_inverse = 0;
-    for (int i = 0; i < 27; ++i) { // For each integer in the group of integers modulo 27
-        if ((a * i) % 27 == 1) { // If the multiplicative inverse of 'a' is found
+    int a_inverse = calculateModularInverse(a, 27); // Find the multiplicative inverse of 'a'
 
-            a_inverse = i; // Set the multiplicative inverse of 'a'
+    cin.ignore();
+    cout << "\nEnter the ciphered text: ";
 
-            break; 
+    string text;
+    getline(cin, text);
+
+    cout << "\nDeciphered text:\n";
+    bool type;
+    for (char c : text) {
+       
+        for (int i = 0; i < 27; i++) {
+            if (c == ' ') {
+                type = type;
+                break;
+            }
+            if (alphabet[i] == c) {
+
+                type = 1; // Uppercase
+                break;
+            }
+            if (alphabets[i] == c) {
+                type = 0; // Lowercase
+                break;
+            }
+        }
+
+        int charIndex = (c == ' ' || c == '_') ? 0 : toupper(c) - 'A' + 1;
+        if ((c == ' ' || c == '_')) {
+            charIndex = 0;
+        }
+        else if (type == 1) {
+            charIndex = c - 'A' + 1;
+        }
+        else if (type == 0) {
+            charIndex = c - 'a' + 1;
+        }
+
+        if (charIndex >= 0 && charIndex < 27 && type == 1) {
+            int decoded_index = (a_inverse * (charIndex - b + 27)) % 27;
+            cout << static_cast<char>(alphabet[decoded_index]);
+        }
+        else if (charIndex >= 0 && charIndex < 27 && type == 0) {
+            int decoded_index = (a_inverse * (charIndex - b + 27)) % 27;
+            cout << static_cast<char>(alphabets[decoded_index]);
+        }
+        else {
+            cout << c;
         }
     }
 
-    cin.ignore(); // Clear the input buffer
-    cout << "\nEnter the ciphered text: "; 
+    cout << endl;
 
-    // Read the text to be deciphered
-    string text;  
-    getline(cin, text); // Read the whole line
-
-    cout << "\nDeciphered text:\n"; 
-
-    int charCount = 0;
-    // Decipher the text
-    for (char c : text) { // For each character in the text convert the character to an index in the alphabet
-        int charIndex = (c == ' ') ? 0 : c - 'A' + 1;  
-
-        int decoded_index = (a_inverse * (charIndex - b + 27)) % 27; // Decipher the character
-        cout << static_cast<char>(alphabet[decoded_index]); // Print the deciphered character
-
-    }
-
-    cout << endl; 
-
-    return 0; 
+    return 0;
 }
