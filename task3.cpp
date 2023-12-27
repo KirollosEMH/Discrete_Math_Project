@@ -7,7 +7,42 @@ using namespace std;
 // Scottish Gaelic: " A, B, C, D, E, F, G, H, I, L, M, N, O, P, R, S, T, U "
 
 // Affine Cipher
-string affineCipher(const string& text)
+string affineCipher(string text)
+{
+    string cipheredText = "";
+
+    // Ciphering Coefficients
+    int a = 5, b = 8;
+
+    // Alphabet
+    const char Alphabet[19][2]
+    {
+        // Alphabet: A, B, C, D, E, F, G, H, I, L, M, N, O, P, R, S, T, U
+        {' ',0}, {'A',1}, {'B',2}, {'C',3}, {'D',4}, {'E',5}, {'F',6}, {'G',7}, {'H',8}, {'I',9}, {'L',10}, {'M',11},
+        {'N',12}, {'O',13}, {'P',14}, {'R',15}, {'S',16}, {'T',17}, {'U',18}
+    };
+
+    for (char c : text)
+    {
+        // Looping through the alphabet
+        for (int i = 0; i < 19; i++)
+        {
+            // Checking if the current letter is in the alphabet
+            if (c == Alphabet[i][0])
+            {
+                // Ciphering formula: E(x) = (ax + b) mod 19
+                int x = (a * Alphabet[i][1] + b) % 19;
+                // Adding ciphered letter to the ciphered text
+                cipheredText += Alphabet[x][0];
+            }
+        }
+    }
+
+    return cipheredText;
+}
+
+// Affine Cipher Extended
+string affineCipherExtended(string text)
 {
     string cipheredText = "";
 
@@ -56,18 +91,20 @@ int main()
 
     // Scottish Gaelic: "THA GAOL AGAM AIR MATAMATAIG"
     // Given text
+    cout << "====================== Given Sentence ======================" << endl;
     string givenText = "THA GAOL AGAM AIR MATAMATAIG";
-    cout << "Given text: " << givenText << endl << endl;
-    cout << "Ciphered text: " << affineCipher(givenText) << endl << endl;
+    cout << "Given text:             " << givenText << endl;
+    cout << "Ciphered text:          " << affineCipher(givenText) << endl;
+    cout << "Ciphered text Extended: " << affineCipherExtended(givenText) << endl;
 
 
     // User input
+    cout << "====================== User Input ======================" << endl;
     cout << "Enter text to cipher: ";
     getline(cin, origText);
+    cout << "Ciphered text:          " << affineCipher(origText) << endl;
+    cout << "Ciphered text Extended: " << affineCipherExtended(origText) << endl << endl;
 
-    cipheredText = affineCipher(origText);
-
-    cout << "Ciphered text: " << cipheredText << endl;
 
     return 0;
 }
