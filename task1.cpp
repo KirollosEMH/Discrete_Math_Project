@@ -46,6 +46,8 @@ int main() {
     // print the array
     cout << "========================================\n";
     cout << "The truth table is: \n";
+    cout <<"p          q          r         ~q         ~r         p->q     ~r->~q       p->r\n";
+    cout << "--------------------------------------------------------------------------------\n";
     printArray(arr, size, num_of_columns);
     cout << "========================================\n";
 
@@ -110,7 +112,7 @@ void initializeArray(int **arr, int size, int num_of_columns, int num_of_argumen
 void printArray(int **arr, int size, int num_of_columns) {
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < num_of_columns; j++) {
-            cout << arr[i][j] << " ";
+            cout << arr[i][j] << "          ";
         }
         cout << endl;
     }
