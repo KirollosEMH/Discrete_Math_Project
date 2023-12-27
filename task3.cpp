@@ -138,7 +138,7 @@ string affineDecipherExtended(string text)
             if (c == AlphabetExtended[i][0])
             {
                 // Deciphering formula: D(x) = a^-1(x - b) mod 77
-                int x = (a_inv * (AlphabetExtended[i][1] - b)) % 77;
+                int x = (a_inv * (i - b + 77)) % 77; // Ensure the result is non-negative
                 // Adding deciphered letter to the deciphered text
                 decipheredText += AlphabetExtended[x][0];
             }
