@@ -26,8 +26,15 @@ int main() {
                         'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
     int a = 0, b = 0;
 
-    cout << "Type your Deciphering keys: (a =? & b =?)    ";
-    cin >> a >> b;
+    cout << "============================================\n";
+    cout << "Type your Deciphering keys: (a =? & b =?)\n";
+    cout << "============================================\n";
+    cout << "a = ";
+    cin >> a;
+    cout << "============================================\n";
+    cout << "b = ";
+    cin >> b;
+    cout << "============================================\n";
 
     // Check if 'a' is relatively prime to 27, if not, request new keys
     while (calculateModularInverse(a, 27) == -1) {
@@ -38,12 +45,13 @@ int main() {
     int a_inverse = calculateModularInverse(a, 27); // Find the multiplicative inverse of 'a'
 
     cin.ignore(); // Ignore the newline character left in the buffer
-    cout << "\nEnter the ciphered text: ";
+    cout << "Enter the ciphered text: ";
 
     string text;
     getline(cin, text); // Get the ciphered text
-
+    cout << "============================================\n";
     cout << "\nDeciphered text:\n";
+
     bool type;
     for (char c : text){ // Loop through each character in the ciphered text
         for (int i = 0; i < 27; i++){ // Loop through each character in the alphabet array 
@@ -89,7 +97,7 @@ int main() {
         }
     }
 
-    cout << endl;
+    cout << "\n============================================\n";
 
     return 0;
 }
