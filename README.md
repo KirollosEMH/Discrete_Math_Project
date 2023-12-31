@@ -20,3 +20,7 @@ Now, commits must start with one of the following prefixes:
 - `update:`
 - `delete:`
 - `merged:`
+
+
+### Task 4 
+1. Deciphering the message given by taking specific a and b 
